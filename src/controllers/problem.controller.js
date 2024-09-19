@@ -11,27 +11,47 @@ async function pingProblemController(req, res){
 
 // adding problem
 async function addProblem(req, res){
-    console.log("addProblem");
+    return (
+        res.status(501).json({
+            message : "Not implemented"
+        })
+    )
 }
 
 // get all problems
 async function getProblems(req, res){
-
+    return (
+        res.status(501).json({
+            message : "Not implemented"
+        })
+    )
 }
 
 // get single problems
 async function getProblem(req, res){
-
+    return (
+        res.status(501).json({
+            message : "Not implemented"
+        })
+    )
 }
 
 // delete single problem
 async function deleteProblem(req, res){
-
+    return (
+        res.status(501).json({
+            message : "Not implemented"
+        })
+    )
 }
 
 // update problem
 async function updateProblem(req, res){
-
+    return (
+        res.status(501).json({
+            message : "Not implemented"
+        })
+    )
 }
 
 module.exports = {
