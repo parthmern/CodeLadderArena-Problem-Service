@@ -20,7 +20,7 @@ app.get('/ping', (req, res) => {
     return res.json({message: 'Problem Service is alive 💚'});
 });
 
-// last middleware if any error comes
+// last middleware if any error comes 
 app.use(errorHandler);
 
 app.listen(PORT,()=>{

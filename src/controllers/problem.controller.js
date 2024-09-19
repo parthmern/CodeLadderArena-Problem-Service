@@ -31,38 +31,42 @@ async function addProblem(req, res, next){
 
 // get all problems
 async function getProblems(req, res){
-    return (
-        res.status(StatusCodes.NOT_IMPLEMENTED).json({
-            message : "Not implemented"
-        })
-    )
+    try{
+        throw new NotImplemented("addProblem");
+        
+    }catch(error){
+        next(error);
+    }
 }
 
 // get single problems
 async function getProblem(req, res){
-    return (
-        res.status(StatusCodes.NOT_IMPLEMENTED).json({
-            message : "Not implemented"
-        })
-    )
+    try{
+        throw new NotImplemented("addProblem");
+        
+    }catch(error){
+        next(error);
+    }
 }
 
 // delete single problem
 async function deleteProblem(req, res){
-    return (
-        res.status(StatusCodes.NOT_IMPLEMENTED).json({
-            message : "Not implemented"
-        })
-    )
+    try{
+        throw new NotImplemented("addProblem");
+        
+    }catch(error){
+        next(error);
+    }
 }
 
 // update problem
 async function updateProblem(req, res){
-    return (
-        res.status(StatusCodes.NOT_IMPLEMENTED).json({
-            message : "Not implemented"
-        })
-    )
+    try{
+        throw new NotImplemented("addProblem");
+        
+    }catch(error){
+        next(error);
+    }
 }
 
 module.exports = {
