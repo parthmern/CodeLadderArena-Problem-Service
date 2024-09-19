@@ -1,6 +1,7 @@
 // import { StatusCodes } from 'http-status-codes';   // not working
 
 const { StatusCodes } = require("http-status-codes");
+const NotImplemented = require("../errors/notImplemented.error");
 
 // ping on all controllers
 async function pingProblemController(req, res){
@@ -13,12 +14,19 @@ async function pingProblemController(req, res){
 
 
 // adding problem
-async function addProblem(req, res){
-    return (
-        res.status(S.NOT_IMPLEMENTED).json({
-            message : "Not implemented"
-        })
-    )
+async function addProblem(req, res, next){
+    
+    try{
+
+        // nothing implemented right now
+        throw new NotImplemented("addProblem");
+        
+    }catch(error){
+
+        // last middleware going to call here "errorHandler"
+        next(error);
+    }
+
 }
 
 // get all problems
