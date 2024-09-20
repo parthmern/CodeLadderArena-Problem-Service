@@ -49,8 +49,18 @@ async function addProblem(req, res, next){
 // get all problems
 async function getProblems(req, res, next){
     try{
-        throw new NotImplemented("addProblem");
-        
+        const allProblems = await problemService.getAllProblems();
+
+        return(
+            res.status(StatusCodes.OK).json(
+                {
+                    success : true,
+                    message : "Successfully got all Problems",
+                    error : {},
+                    data : allProblems
+                }
+            )
+        )
     }catch(error){
         next(error);
     }

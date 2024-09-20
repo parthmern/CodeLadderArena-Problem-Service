@@ -23,6 +23,16 @@ class ProblemRepository {
         
     }
 
+    async getAllProblems(){
+        
+        const problems = await Problem.find({});
+
+        return problems ;
+        
+        //can avoid try catch because on upper lvl we are already have it and handling it
+    }
+
+
 }
 
 module.exports = ProblemRepository ;

@@ -27,6 +27,20 @@ class ProblemService {
         }
     }
 
+
+    async getAllProblems(){
+        
+            
+        const allProblems = await this.problemRepository.getAllProblems();
+
+        console.log("allProblems => ", allProblems);
+
+        return allProblems ;
+
+        //can avoid try catch because on upper lvl we are already have it and handling it
+        
+    }
+
 }
 
 module.exports = ProblemService ;
