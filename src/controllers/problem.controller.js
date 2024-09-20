@@ -2,8 +2,11 @@
 
 const { StatusCodes } = require("http-status-codes");
 const NotImplemented = require("../errors/notImplemented.error");
+const { ProblemRepository } = require("../repositories");
+const { ProblemService } = require("../services");
 
-// ping on all controllers
+const problemService = new ProblemService(new ProblemRepository());
+
 async function pingProblemController(req, res){
     return(
         res.status(StatusCodes.OK).json({
@@ -18,8 +21,22 @@ async function addProblem(req, res, next){
     
     try{
 
-        // nothing implemented right now
-        throw new NotImplemented("addProblem");
+        console.log("req.body=>", req.body);
+
+        const newProblem = await problemService.createProblem(req.body);
+
+        console.log("last log problem created =>");
+
+        return(
+            res.status(StatusCodes.OK).json(
+                {
+                    success : true,
+                    message : "Successfully create a new problem",
+                    error : {},
+                    data : newProblem
+                }
+            )
+        )
         
     }catch(error){
 
@@ -30,19 +47,43 @@ async function addProblem(req, res, next){
 }
 
 // get all problems
-async function getProblems(req, res){
+async function getProblems(req, res, next){
     try{
-        throw new NotImplemented("addProblem");
-        
+        const allProblems = await problemService.getAllProblems();
+
+        return(
+            res.status(StatusCodes.OK).json(
+                {
+                    success : true,
+                    message : "Successfully got all Problems",
+                    error : {},
+                    data : allProblems
+                }
+            )
+        )
     }catch(error){
         next(error);
     }
 }
 
 // get single problems
-async function getProblem(req, res){
+async function getProblem(req, res, next){
     try{
-        throw new NotImplemented("addProblem");
+        
+        const problem = await problemService.getProblem(req?.params?.id);
+
+        console.log("getProblem single=>", problem);
+
+        return(
+            res.status(StatusCodes.OK).json(
+                {
+                    success : true,
+                    message : "Successfully got Problem",
+                    error : {},
+                    data : problem
+                }
+            )
+        )
         
     }catch(error){
         next(error);
@@ -50,7 +91,7 @@ async function getProblem(req, res){
 }
 
 // delete single problem
-async function deleteProblem(req, res){
+async function deleteProblem(req, res, next){
     try{
         throw new NotImplemented("addProblem");
         
@@ -60,7 +101,7 @@ async function deleteProblem(req, res){
 }
 
 // update problem
-async function updateProblem(req, res){
+async function updateProblem(req, res, next){
     try{
         throw new NotImplemented("addProblem");
         
@@ -72,7 +113,7 @@ async function updateProblem(req, res){
 module.exports = {
     addProblem,
     getProblems,
-    getProblem,
+    getProblem, 
     deleteProblem,
     updateProblem,
     pingProblemController
