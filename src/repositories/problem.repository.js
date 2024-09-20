@@ -18,6 +18,7 @@ class ProblemRepository {
         }
         catch(error){
             console.log("error ==>", error);
+            throw error; 
         }   
         
     }

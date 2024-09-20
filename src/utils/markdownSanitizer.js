@@ -7,19 +7,20 @@ function sanitizeMarkdownContent(markdownContent){
 
     // 1) convert markdown to html
     const convertedHtml = marked.parse(markdownContent);
+    console.log("convertedHtml=>", convertedHtml);
 
     // 2) sanitize html
     const sanitizedHtml = sanitizeHtmlLibrary(convertedHtml, {
         allowedTags : sanitizeHtmlLibrary.defaults.allowedTags 
     });
 
-    //console.log(sanitizedHtml);
+    console.log("sanitizedHtml=>",sanitizedHtml);
 
     // 3) sanitize markdown - convert sanitize html back to markdown
     const turndownService = new TurndownService();
     const sanitizedMarkdown = turndownService.turndown(sanitizedHtml);
 
-    //console.log(sanitizedMarkdown);
+    console.log("sanitizedMarkdown=>", sanitizedMarkdown);
 
     return sanitizedMarkdown ;
 }

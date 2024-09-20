@@ -1,9 +1,12 @@
 // import { StatusCodes } from 'http-status-codes';   // not working
 
-// const { StatusCodes } = require("http-status-codes");
+const { StatusCodes } = require("http-status-codes");
 const NotImplemented = require("../errors/notImplemented.error");
+const { ProblemRepository } = require("../repositories");
+const { ProblemService } = require("../services");
 
-// ping on all controllers
+const problemService = new ProblemService(new ProblemRepository());
+
 async function pingProblemController(req, res){
     return(
         res.status(StatusCodes.OK).json({
@@ -18,8 +21,22 @@ async function addProblem(req, res, next){
     
     try{
 
-        // nothing implemented right now
-        throw new NotImplemented("addProblem");
+        console.log("req.body=>", req.body);
+
+        const newProblem = await problemService.createProblem(req.body);
+
+        console.log("last log problem created =>");
+
+        return(
+            res.status(StatusCodes.OK).json(
+                {
+                    success : true,
+                    message : "Successfully create a new problem",
+                    error : {},
+                    data : newProblem
+                }
+            )
+        )
         
     }catch(error){
 
