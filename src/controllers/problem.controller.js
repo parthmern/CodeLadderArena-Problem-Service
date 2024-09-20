@@ -91,11 +91,17 @@ async function getProblem(req, res, next){
 }
 
 // delete single problem
-async function deleteProblem(req, res, next){
-    try{
-        throw new NotImplemented("addProblem");
-        
-    }catch(error){
+async function deleteProblem(req, res, next) {
+    try {
+        const deletedProblem = await problemService.deleteProblem(req.params.id);
+        console.log("deletedProblem=>", deletedProblem);
+        return res.status(StatusCodes.OK).json({
+            success: true,
+            message: 'Successfully deleted the problem',
+            error: {},
+            data: deletedProblem
+        });
+    } catch(error) {
         next(error);
     }
 }
@@ -103,7 +109,7 @@ async function deleteProblem(req, res, next){
 // update problem
 async function updateProblem(req, res, next){
     try{
-        throw new NotImplemented("addProblem");
+        throw new NotImplemented("updateProblem");
         
     }catch(error){
         next(error);
