@@ -69,7 +69,21 @@ async function getProblems(req, res, next){
 // get single problems
 async function getProblem(req, res, next){
     try{
-        throw new NotImplemented("addProblem");
+        
+        const problem = await problemService.getProblem(req?.params?.id);
+
+        console.log("getProblem single=>", problem);
+
+        return(
+            res.status(StatusCodes.OK).json(
+                {
+                    success : true,
+                    message : "Successfully got Problem",
+                    error : {},
+                    data : problem
+                }
+            )
+        )
         
     }catch(error){
         next(error);
