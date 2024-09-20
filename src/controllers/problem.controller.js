@@ -1,6 +1,6 @@
 // import { StatusCodes } from 'http-status-codes';   // not working
 
-const { StatusCodes } = require("http-status-codes");
+// const { StatusCodes } = require("http-status-codes");
 const NotImplemented = require("../errors/notImplemented.error");
 
 // ping on all controllers
@@ -30,7 +30,7 @@ async function addProblem(req, res, next){
 }
 
 // get all problems
-async function getProblems(req, res){
+async function getProblems(req, res, next){
     try{
         throw new NotImplemented("addProblem");
         
@@ -40,7 +40,7 @@ async function getProblems(req, res){
 }
 
 // get single problems
-async function getProblem(req, res){
+async function getProblem(req, res, next){
     try{
         throw new NotImplemented("addProblem");
         
@@ -50,7 +50,7 @@ async function getProblem(req, res){
 }
 
 // delete single problem
-async function deleteProblem(req, res){
+async function deleteProblem(req, res, next){
     try{
         throw new NotImplemented("addProblem");
         
@@ -60,7 +60,7 @@ async function deleteProblem(req, res){
 }
 
 // update problem
-async function updateProblem(req, res){
+async function updateProblem(req, res, next){
     try{
         throw new NotImplemented("addProblem");
         
@@ -72,7 +72,7 @@ async function updateProblem(req, res){
 module.exports = {
     addProblem,
     getProblems,
-    getProblem,
+    getProblem, 
     deleteProblem,
     updateProblem,
     pingProblemController
