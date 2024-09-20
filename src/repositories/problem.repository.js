@@ -1,3 +1,4 @@
+const logger = require("../config/logger.config");
 const NotFound = require("../errors/notfound.error");
 const { Problem } = require("../models");
 
@@ -48,6 +49,20 @@ class ProblemRepository {
         catch(error){
             console.log("error at getProblem repository lvl ==>", error);
             throw error; 
+        }
+    }
+
+    async deleteProblem(id) {
+        try {
+            const deletedProblem = await Problem.findByIdAndDelete(id);
+            if(!deletedProblem) {
+                logger.error(`problem.repository: Problem with Id: ${id} not found in db`);
+                throw new NotFound("problem", id);
+            }
+            return deletedProblem;
+        } catch (error) {
+            console.log(error);
+            throw error;
         }
     }
 

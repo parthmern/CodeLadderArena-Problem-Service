@@ -1,4 +1,5 @@
 
+const logger = require("../config/logger.config");
 const BaseError = require("../errors/base.error");
 const { StatusCodes } = require('http-status-codes');
 
@@ -9,6 +10,9 @@ function errorHandler(err, req, res, next) {
 
     // IF error is child object of BaseError
     if(err instanceof BaseError) {
+
+        logger.error(err.message);
+
         return res.status(err.statusCode).json({
             success: false,
             message: err.message,
@@ -18,6 +22,9 @@ function errorHandler(err, req, res, next) {
     }
 
     // ELSE
+    
+    logger.error("Something went wrong !");
+    
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
         success: false,
         message: 'Something went wrong !',
