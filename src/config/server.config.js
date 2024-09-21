@@ -9,4 +9,8 @@ module.exports ={
     ATLAS_DB_URL : process.env.ATLAS_DB_URL ,
     NODE_ENV : process.env.NODE_ENV,
     LOG_DB_URL : process.env.LOG_DB_URL,
+    COSMOS_ENDPOINT : process.env.COSMOS_ENDPOINT,
+    COSMOS_KEY : process.env.COSMOS_KEY,
+    COSMOS_DBID : process.env.COSMOS_DBID,
+    COSMOS_CONTAINERID : process.env.COSMOS_CONTAINERID
 }
