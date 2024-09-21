@@ -1,8 +1,15 @@
 const winston = require("winston");
 const { LOG_DB_URL } = require("./server.config");
+const CosmosDBTransport = require("../clientapis/CosmosDBTransport");
+
 require('winston-mongodb'); // diff pkg ( for sql db winston-sqlite pkg is there )
 
 const allowedTransports = [];
+
+// The below transport enables Cosmos DB logging
+allowedTransports.push(new CosmosDBTransport({
+    level: 'error'
+}));
 
 // The below transport configuration enables logging on the console
 allowedTransports.push(new winston.transports.Console({

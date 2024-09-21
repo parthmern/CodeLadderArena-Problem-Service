@@ -4,10 +4,12 @@ const { StatusCodes } = require("http-status-codes");
 const NotImplemented = require("../errors/notImplemented.error");
 const { ProblemRepository } = require("../repositories");
 const { ProblemService } = require("../services");
+const logger = require("../config/logger.config");
 
 const problemService = new ProblemService(new ProblemRepository());
 
 async function pingProblemController(req, res){
+    logger.info("pingProblemController is up")
     return(
         res.status(StatusCodes.OK).json({
             message : "pingProblemController is up"
