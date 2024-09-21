@@ -1,9 +1,10 @@
 const {CosmosClient} = require("@azure/cosmos");
+const { COSMOS_ENDPOINT, COSMOS_KEY, COSMOS_DBID, COSMOS_CONTAINERID } = require("../config/server.config");
 
-const endpoint = "https://codeladderarena.documents.azure.com:443/";
-const key = "22Klt720cNGRasThsdF3B37ac3QmAAeaLb24XYRQDbGUhP4rSc65mKog9KzZkCQ6qLCZxGlAdRQ7ACDb5qPnFg==";
-const dbId = "CodeLadderArena-Logger-Service";
-const containerId = "error-logs";
+const endpoint = COSMOS_ENDPOINT;
+const key = COSMOS_KEY;
+const dbId = COSMOS_DBID;
+const containerId = COSMOS_CONTAINERID;
 
 const client = new CosmosClient({ endpoint, key });
 const database = client.database(dbId);
