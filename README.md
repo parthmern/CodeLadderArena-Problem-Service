@@ -29,7 +29,7 @@
 - mongoosse is ODM for mongodb
 - prisma, sequalize, drizzle are ORM for sql
 
-## azure conmos db
+## azure COSMOS db
 
 - no sql db
 - want to do logging beacuse of efficient searching/querying
