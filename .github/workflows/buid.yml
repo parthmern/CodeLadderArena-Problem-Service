@@ -8,6 +8,12 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    env:
+      PORT: ${{ secrets.PORT }}
+      NODE_ENV: ${{ secrets.NODE_ENV }}
+      CLIENTSIDE_URL: ${{ secrets.CLIENTSIDE_URL }}
+      SUBMISSIONSERVICE_URL: ${{ secrets.SUBMISSIONSERVICE_URL }}
+
     steps:
     - name: Check Out Repo
       uses: actions/checkout@v2
@@ -17,6 +23,15 @@ jobs:
 
     - name: Running Tests "npm run test"
       run: npm run test
+      env:
+        ATLAS_DB_URL: ${{ secrets.ATLAS_DB_URL }}
+        LOG_DB_URL: ${{ secrets.LOG_DB_URL }}
+        COSMOS_ENDPOINT: ${{ secrets.COSMOS_ENDPOINT }}
+        COSMOS_KEY: ${{ secrets.COSMOS_KEY }}
+        COSMOS_DBID: ${{ secrets.COSMOS_DBID }}
+        COSMOS_CONTAINERID: ${{ secrets.COSMOS_CONTAINERID }}
+        JWT_SECRET: ${{ secrets.JWT_SECRET }}
+
 
     # - name: Log in to Docker Hub
     #   uses: docker/login-action@v1
