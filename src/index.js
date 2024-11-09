@@ -23,7 +23,7 @@ app.use(bodyParser.text());
 app.use("/api", apiRouter);
 
 app.get('/ping', (req, res) => {
-    return res.status(300).json({message: 'Problem Service is alive 💚'});
+    return res.status(200).json({message: 'Problem Service is alive 💚'});
 });
 
 // last middleware if any error comes 

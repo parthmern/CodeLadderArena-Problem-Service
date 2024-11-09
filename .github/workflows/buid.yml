@@ -13,6 +13,13 @@ jobs:
       NODE_ENV: ${{ secrets.NODE_ENV }}
       CLIENTSIDE_URL: ${{ secrets.CLIENTSIDE_URL }}
       SUBMISSIONSERVICE_URL: ${{ secrets.SUBMISSIONSERVICE_URL }}
+      ATLAS_DB_URL: ${{ secrets.ATLAS_DB_URL }}
+      LOG_DB_URL: ${{ secrets.LOG_DB_URL }}
+      COSMOS_ENDPOINT: ${{ secrets.COSMOS_ENDPOINT }}
+      COSMOS_KEY: ${{ secrets.COSMOS_KEY }}
+      COSMOS_DBID: ${{ secrets.COSMOS_DBID }}
+      COSMOS_CONTAINERID: ${{ secrets.COSMOS_CONTAINERID }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
 
     steps:
     - name: Check Out Repo
@@ -23,32 +30,35 @@ jobs:
 
     - name: Running Tests "npm run test"
       run: npm run test
-      env:
-        ATLAS_DB_URL: ${{ secrets.ATLAS_DB_URL }}
-        LOG_DB_URL: ${{ secrets.LOG_DB_URL }}
-        COSMOS_ENDPOINT: ${{ secrets.COSMOS_ENDPOINT }}
-        COSMOS_KEY: ${{ secrets.COSMOS_KEY }}
-        COSMOS_DBID: ${{ secrets.COSMOS_DBID }}
-        COSMOS_CONTAINERID: ${{ secrets.COSMOS_CONTAINERID }}
-        JWT_SECRET: ${{ secrets.JWT_SECRET }}
 
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}  # go to dockerhub then profile > security > new access token > generate one || go to github repo then settings > secrets and variables > actions  > repo secret > add NAME:value
+        password: ${{ secrets.DOCKER_PASSWORD }}
 
-    # - name: Log in to Docker Hub
-    #   uses: docker/login-action@v1
-    #   with:
-    #     username: ${{ secrets.DOCKER_USERNAME }}  # go to dockerhub then profile > security > new access token > generate one || go to github repo then settings > secrets and variables > actions  > repo secret > add NAME:value
-    #     password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: Build and Push Docker image
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        file: ./Dockerfile
+        push: true
+        tags: pptl8685/problem-service:latest  
+        build-args: |
+          PORT=${{ secrets.PORT }}
+          NODE_ENV=${{ secrets.NODE_ENV }}
+          CLIENTSIDE_URL=${{ secrets.CLIENTSIDE_URL }}
+          SUBMISSIONSERVICE_URL=${{ secrets.SUBMISSIONSERVICE_URL }}
+          ATLAS_DB_URL=${{ secrets.ATLAS_DB_URL }}
+          LOG_DB_URL=${{ secrets.LOG_DB_URL }}
+          COSMOS_ENDPOINT=${{ secrets.COSMOS_ENDPOINT }}
+          COSMOS_KEY=${{ secrets.COSMOS_KEY }}
+          COSMOS_DBID=${{ secrets.COSMOS_DBID }}
+          COSMOS_CONTAINERID=${{ secrets.COSMOS_CONTAINERID }}
+          JWT_SECRET=${{ secrets.JWT_SECRET }}
 
-    # - name: Build and Push Docker image
-    #   uses: docker/build-push-action@v2
-    #   with:
-    #     context: .
-    #     file: ./Dockerfile
-    #     push: true
-    #     tags: pptl8685/problem-service:latest  
-
-    # - name: Verify Pushed Image
-    #   run: docker pull pptl8685/problem-service:latest 
+    - name: Verify Pushed Image
+      run: docker pull pptl8685/problem-service:latest 
 
     # - name: Deploy to EC2
     #   uses: appleboy/ssh-action@master
