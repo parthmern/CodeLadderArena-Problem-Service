@@ -18,7 +18,7 @@ async function logToCosmosDB(level,message) {
             message : message
         });
 
-        console.log("log entry created in cosmosDB");
+        console.log("log entry created in- cosmosDB");
     }
     catch(error){
         console.log("error in logging to cosmos db");
