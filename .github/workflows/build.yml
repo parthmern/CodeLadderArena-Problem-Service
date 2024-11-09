@@ -1,0 +1,37 @@
+name: Build on PR
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      PORT: ${{ secrets.PORT }}
+      NODE_ENV: ${{ secrets.NODE_ENV }}
+      CLIENTSIDE_URL: ${{ secrets.CLIENTSIDE_URL }}
+      SUBMISSIONSERVICE_URL: ${{ secrets.SUBMISSIONSERVICE_URL }}
+      ATLAS_DB_URL: ${{ secrets.ATLAS_DB_URL }}
+      LOG_DB_URL: ${{ secrets.LOG_DB_URL }}
+      COSMOS_ENDPOINT: ${{ secrets.COSMOS_ENDPOINT }}
+      COSMOS_KEY: ${{ secrets.COSMOS_KEY }}
+      COSMOS_DBID: ${{ secrets.COSMOS_DBID }}
+      COSMOS_CONTAINERID: ${{ secrets.COSMOS_CONTAINERID }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+
+    steps:
+        name: Check Out Repo Cloning repo
+        uses: actions/checkout@v3
+      
+      - name: Use Node.js
+        uses: actions/setup-node@v3 
+        with:
+          node-version: '20'
+      
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Running Tests "npm run test"
+        run: npm run test
