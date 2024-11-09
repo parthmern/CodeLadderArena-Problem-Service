@@ -1,6 +1,6 @@
 const winston = require("winston");
 const { LOG_DB_URL } = require("./server.config");
-const CosmosDBTransport = require("../clientapis/CosmosDBTransport");
+const CosmosDBTransport = require("../clientapis/cosmosDBTransport");
 
 require('winston-mongodb'); // diff pkg ( for sql db winston-sqlite pkg is there )
 
