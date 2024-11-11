@@ -11,9 +11,9 @@ const app = express();
 
 // app.use(cors());
 app.use(cors({
-    origin: "*", // Dont mashedup with it
+    origin: ['http://localhost:3000', 'http://submissionservice.parthmern.store'], // List the exact origins
     credentials: true, // Allow cookies to be sent across domains
-}));
+  }));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
