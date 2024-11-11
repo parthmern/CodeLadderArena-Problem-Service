@@ -11,7 +11,7 @@ const app = express();
 
 // app.use(cors());
 app.use(cors({
-    origin: [CLIENTSIDE_URL, SUBMISSIONSERVICE_URL], // Dont mashedup with it
+    origin: ["*", CLIENTSIDE_URL, SUBMISSIONSERVICE_URL], // Dont mashedup with it
     credentials: true, // Allow cookies to be sent across domains
 }));
 app.use(cookieParser());
