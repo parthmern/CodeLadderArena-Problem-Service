@@ -10,10 +10,16 @@ const cookieParser = require("cookie-parser");
 const app = express();
 
 // app.use(cors());
+// app.use(cors({
+//     origin: ['http://localhost:3000', 'http://submissionservice.parthmern.store'], // List the exact origins
+//     credentials: true, // Allow cookies to be sent across domains
+//   }));
+
 app.use(cors({
-    origin: ['http://localhost:3000', 'http://submissionservice.parthmern.store'], // List the exact origins
+    origin: [CLIENTSIDE_URL, SUBMISSIONSERVICE_URL], // List the exact origins
     credentials: true, // Allow cookies to be sent across domains
   }));
+
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
