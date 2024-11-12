@@ -13,7 +13,7 @@ const app = express();
 // app.use(cors({
 //     origin: ['http://localhost:3000', 'http://submissionservice.parthmern.store'], // List the exact origins
 //     credentials: true, // Allow cookies to be sent across domains
-//   }));
+//   })); 
 
 app.use(cors({
     origin: [CLIENTSIDE_URL, SUBMISSIONSERVICE_URL], // List the exact origins
