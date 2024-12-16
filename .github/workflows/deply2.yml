@@ -57,7 +57,7 @@ jobs:
           COSMOS_CONTAINERID=${{ secrets.COSMOS_CONTAINERID }}
           JWT_SECRET=${{ secrets.JWT_SECRET }}
 
-    - name: Verify Pushed Image
+    - name: Verify Pushed Image available or not
       run: docker pull pptl8685/problem-service-ps:latest 
 
     - name: Deploy to EC2
